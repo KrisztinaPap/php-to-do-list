@@ -6,8 +6,18 @@
         $_SESSION['activeList'] = array();
         $_SESSION['completedList'] = array();
     }
+    var_dump($_SESSION['activeList']);
+    $newToDo = FALSE;
 
     include './templates/header.php';
+
+
+    if ( ( !empty( $_POST)) && ($_POST['newTask'] !== '' ))
+    {
+        $newToDo = $_POST['newTask'];
+        array_push( $_SESSION[ 'activeList' ], "{$newToDo}" );
+        $newToDo = '';
+    }
 ?>
 
 <h1>Welcome to Krisztina's PHP To-Do List</h1>
@@ -27,6 +37,14 @@
 </form>
 
 <h2>Active To-Dos</h2>
+<ul>
+<?php foreach ( $_SESSION[ 'activeList' ] as $task ) : ?>
+    <li>
+        <?php echo $task ?>
+        <button type="delete" value="delete">Delete</button>
+    </li>
+<?php endforeach; ?>
+</ul>
 
 <h2>Completed To-Dos</h2>
 
