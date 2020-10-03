@@ -18,15 +18,19 @@
             array_push( $_SESSION[ 'activeList' ], "{$newToDo}" );
             $newToDo = '';
         }
-        var_dump($_SESSION['activeList']);
     }
     if(isset($_POST['reset']))
     {
         session_unset();
         session_destroy();
     }
-
-    
+    // Received advice re: using isset instead of onclick on delete button from Lindsey Graham
+    if (isset($_POST['deleteTask'])) {
+        // Received guidance from Lindsey Graham but I worked through the below 3 lines of code line-by-line!
+        // var_dump(array_keys($_POST['deleteTask'])[0]);
+        $deleteId = array_keys($_POST['deleteTask'])[0];
+        unset($_SESSION[ 'activeList' ][$deleteId]);
+    }
 ?>
 
 <h1>Welcome to Krisztina's PHP To-Do List</h1>
@@ -49,10 +53,14 @@
 <h2>Active To-Dos</h2>
 <ul>
 <?php if ( !empty($_SESSION['activeList']) ) : ?> 
-    <?php foreach ( $_SESSION[ 'activeList' ] as $task ) : ?>
+    <!-- Received advice from Lindsey Graham re: adding id to following code line -->
+    <?php foreach ( $_SESSION[ 'activeList' ] as $id=>$task ) : ?>
         <li>
             <?php echo $task ?>
-            <button type="delete" value="delete">Delete</button>
+            <form method="POST" action="index.php">
+                <!-- Received advice from Lindsey Graham re: how to add id number to following code line (htmlspecialchars) -->
+                <input id="<?php echo $task?>" type="submit" name="deleteTask[<?php echo htmlspecialchars($id); ?>]" value="delete"/>
+            </form>
         </li>
     <?php endforeach; ?>
 <?php endif ?>
