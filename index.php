@@ -45,16 +45,20 @@
 <section id="addToDoSection">
     <h2>Add a To-Do</h2>
     <form method="POST" action="index.php">
-        <label for="newTask">
-            Enter a new task:
+        <div class="flex-container" id="input-container">
+            <label for="newTask">
+                Enter a new task:
+            </label>
             <input 
                 id="newTask" 
                 name="newTask"
                 type="string"
                 value="">
-        </label>
-        <button type="btn" name="add" value="Add To List"><i class="far fa-plus-square"></i></button>
-        <button type="btn" name="reset" value="Reset List"><i class="fas fa-power-off"></i></button>
+            <div class="buttons">
+                <button type="btn" name="add" value="Add To List"><i class="far fa-plus-square"></i></button>
+                <button type="btn" name="reset" value="Reset List"><i class="fas fa-power-off"></i></button>
+            </div>
+        </div>
     </form>
 </section>
 

@@ -46,7 +46,7 @@ li {
 .flex-container {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
 
@@ -56,8 +56,26 @@ button {
     padding: 0.2rem 0.4rem;
 }
 
+button:hover,
+button:focus {
+    box-shadow: 5px 5px 5px var(--space-cadet);
+}
+
 i {
     color: var(--space-cadet);
+}
+
+input, label {
+    margin-bottom: 0.4rem;
+}
+
+input {
+    max-width: 400px;
+    padding: 0.4rem;
+}
+
+#input-container {
+    flex-direction: column;
 }
 
 /* Media queries */
