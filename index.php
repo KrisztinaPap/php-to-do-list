@@ -55,7 +55,7 @@
         </label>
         <button type="btn" name="add" value="Add To List"><i class="far fa-plus-square"></i></button>
         <button type="btn" name="reset" value="Reset List"><i class="fas fa-power-off"></i></button>
-    </form>`
+    </form>
 </section>
 
 <section id="activeToDoSection">
