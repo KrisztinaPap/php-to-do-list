@@ -56,6 +56,10 @@
     <!-- Received advice from Lindsey Graham re: adding id to following code line -->
     <?php foreach ( $_SESSION[ 'activeList' ] as $id=>$task ) : ?>
         <li>
+            <form method="POST" action="index.php">
+                <label for="isCompleted"></label>
+                <input type="checkbox" id="checkbox-<?php echo $task ?>" name="isCompleted" value="isCompleted"/>
+            </form>
             <?php echo $task ?>
             <form method="POST" action="index.php">
                 <!-- Received advice from Lindsey Graham re: how to add id number to following code line (htmlspecialchars) -->
