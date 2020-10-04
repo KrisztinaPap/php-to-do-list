@@ -7,8 +7,14 @@
 
     <!-- Style(s) -->
     <link rel="stylesheet" type="text/css" href="css/main.css">
-
+    
+    <!-- FontAwesome Styles -->
+    <link rel="stylesheet" type="text/css" href="css/all.css">
+    
     <!-- Script(s) -->
     <script type="text/JavaScript" src="js/scripts.js" defer></script>
+
+    <!-- FontAwesome Scripts -->
+    <script type="text/JavaScript" src="js/all.js" defer></script>
 </head>
 <body>

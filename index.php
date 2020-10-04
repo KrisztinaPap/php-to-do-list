@@ -31,6 +31,12 @@
         $deleteId = array_keys($_POST['deleteTask'])[0];
         unset($_SESSION[ 'activeList' ][$deleteId]);
     }
+    if (isset($_POST['completeTask'])) {
+        $completedId = array_keys($_POST['completeTask'])[0];
+        $completedTask = $_SESSION[ 'activeList' ][$completedId];
+        array_push( $_SESSION[ 'completedList' ], "{$completedTask}" );
+        unset($_SESSION[ 'activeList' ][$completedId]);
+    }
 ?>
 
 <h1>Welcome to Krisztina's PHP To-Do List</h1>
@@ -56,14 +62,11 @@
     <!-- Received advice from Lindsey Graham re: adding id to following code line -->
     <?php foreach ( $_SESSION[ 'activeList' ] as $id=>$task ) : ?>
         <li>
-            <form method="POST" action="index.php">
-                <label for="isCompleted"></label>
-                <input type="checkbox" id="checkbox-<?php echo $task ?>" name="isCompleted" value="isCompleted"/>
-            </form>
             <?php echo $task ?>
             <form method="POST" action="index.php">
                 <!-- Received advice from Lindsey Graham re: how to add id number to following code line (htmlspecialchars) -->
-                <input id="<?php echo $task?>" type="submit" name="deleteTask[<?php echo htmlspecialchars($id); ?>]" value="delete"/>
+                <button id="delete-<?php echo $task?>" type="btn" name="deleteTask[<?php echo htmlspecialchars($id); ?>]" value="delete"><i class="fas fa-trash-alt"></i></button>
+                <button id="complete-<?php echo $task?>" type="btn" name="completeTask[<?php echo htmlspecialchars($id); ?>]" value="isCompleted"><i class="far fa-check-square"></i></button>
             </form>
         </li>
     <?php endforeach; ?>
@@ -73,6 +76,16 @@
 </ul>
 
 <h2>Completed To-Dos</h2>
+
+<?php if ( !empty($_SESSION['completedList']) ) : ?> 
+        <?php foreach ( $_SESSION[ 'completedList' ] as $id=>$task ) : ?>
+            <?php if ( $task !== '') : ?>
+                <li>
+                    <?php echo $task ?>
+                </li>
+            <?php endif ?>
+        <?php endforeach; ?>
+<?php endif ?>
 
 <h2>Debugging</h2>
 
