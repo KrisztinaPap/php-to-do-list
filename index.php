@@ -9,12 +9,13 @@
     $newToDo = '';
 
     include './templates/header.php';
+    include_once './include/validator.php';
 
     if(isset($_POST['add']))
     {
         if ( ( !empty( $_POST)) && ($_POST['newTask'] !== '' ) && ( !in_array( $_POST['newTask'], $_SESSION['activeList']) ) )
         {
-            $newToDo = $_POST['newTask'];
+            $newToDo = validate_input($_POST['newTask']);
             array_push( $_SESSION[ 'activeList' ], "{$newToDo}" );
             $newToDo = '';
         }
